@@ -30,7 +30,8 @@ and use as follows:
 require 'rack/noncache'
 
 use Rack::NonCache,
-  :metastore   => 'file:/var/cache/rack/meta',
+    :whitelist => ['/path/to/non/caching/url', ...,
+                   Regexp.new(/^\/path\/to\/non\/caching\/url/)]
 
 run app
 ```
