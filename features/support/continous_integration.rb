@@ -1,5 +1,4 @@
-require_relative 'capybara_selenium'
-# require 'capybara-selenium'
+require 'capybara_selenium'
 
 # Helpers for accessing configuration option
 module ContinousIntegration
