@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.6'
   spec.add_development_dependency 'cane'
   spec.add_development_dependency 'capybara'
+  spec.add_development_dependency 'capybara-selenium'
   spec.add_development_dependency 'codeclimate-test-reporter'
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'cucumber'
@@ -35,5 +36,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop-rspec'
   spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency 'simplecov'
+
+  # Dummy app dependencies
+  spec.add_development_dependency 'haml'
   spec.add_development_dependency 'sinatra'
 end
