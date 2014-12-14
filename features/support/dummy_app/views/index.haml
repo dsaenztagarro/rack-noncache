@@ -3,4 +3,13 @@
   %head
     %title My Sinatra Website
   %body
-    %h1 Welcome
+    %h1
+      Welcome
+    %ul
+      - @todos.each do |todo|
+        %li= todo
+
+%script{'src' => 'js/vendor/jquery-min.js.js'}
+%script{'src' => 'js/vendor/underscore-min.js'}
+%script{'src' => 'js/vendor/backbone-min.js'}
+%script{'defer' => true, 'src' => 'js/script.js'}
