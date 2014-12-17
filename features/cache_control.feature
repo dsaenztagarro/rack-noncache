@@ -1,8 +1,8 @@
 Feature: Cache control in browser navigation
-  Scenario: Add two numbers
-    Given I open a firefox browser
-    And I visit home page
-    And I make an ajax action
-    When I visit the next page
-    And I press back browser button
-    Then I see the home page with the previous ajax action status
+  Scenario: Pressing back browser button
+    Given I choose a firefox browser
+    And I visit the home page
+    And I store 3 todo tasks in session
+    When I click on Show details
+    And I press the back browser button
+    Then I see the 3 todo tasks in todo list

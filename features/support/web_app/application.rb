@@ -1,42 +1,69 @@
 require 'sinatra/base'
-require "sinatra/json"
-require 'haml'
+require 'sinatra/json'
+require 'data_mapper'
+
+# If you want the logs displayed you have to do this before the call to setup
+DataMapper::Logger.new($stdout, :debug)
+
+# A Sqlite3 connection:
+DataMapper.setup(:default, 'sqlite:data.db')
+
+class Todo
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :text,       Text
+  property :created_at, DateTime, :default => lambda { |r,p| Time.now }
+  property :done,       Boolean, :default => false
+end
+
+DataMapper.finalize
+DataMapper.auto_upgrade!
 
 # Rack application to work with RackNonCache middleware
 class DummyApp < Sinatra::Base
   helpers Sinatra::JSON
+  helpers do
+    def json_data
+      JSON.parse request.body.read
+    end
+  end
 
-  before '/api/*' do
+  before '/todos*' do
     content_type 'application/json'
   end
 
   get '/' do
-    @todos = session[:todos] || []
-    haml :index
+    @todos = Todo.all
+    erb :index
   end
 
-  get '/api/todos' do
+  get '/details' do
+    erb :details
+  end
+
+  get '/todos' do
     session[:todos].t
     Todo.all.to_json
   end
 
-  get '/api/todos/:id' do
+  get '/todos/:id' do
     todo = Todo.get(params[:id])
     todo.to_json
   end
 
-  put '/api/todos/:id' do
+  put '/todos/:id' do
     todo = Todo.get(params[:id])
     todo.update(json_data)
     todo.to_json
   end
 
-  post '/api/todos' do
+  post '/todos' do
     todo = Todo.create(json_data)
     todo.to_json
   end
 
-  delete '/api/todos/:id' do
+  delete '/todos/:id' do
     todo = Todo.get(params[:id])
     todo.destroy
   end
