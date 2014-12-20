@@ -3,9 +3,13 @@ Given(/^a (\w+) for no caching my web application$/) do |strategy|
   DataMapper.auto_upgrade!
 end
 
+Given(/^I am a (\w+) user$/) do |platform|
+  @platform = platform
+end
+
 Given(/^I open a '(.+)' (\w+)$/) do |browser_name, browser_version|
   TestSettings.configure(browser_name: browser_name, version: browser_version,
-                         strategy: @strategy)
+                         strategy: @strategy, platform: @platform)
 end
 
 Given(/^I visit the (\w+) page$/) do |page_name|
