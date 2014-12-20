@@ -1,5 +1,6 @@
 Given(/^a (\w+) for no caching my web application$/) do |strategy|
   @strategy = strategy
+  DataMapper.auto_upgrade!
 end
 
 Given(/^I open a '(.+)' (\w+)$/) do |browser_name, browser_version|

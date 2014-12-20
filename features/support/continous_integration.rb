@@ -18,20 +18,20 @@ module TestSettings
     # @option opts [String] :strategy The strategy to configure the
     #   Rack::NonCache middleware
     def configure(opts = {})
-      CapybaraSelenium::Configurator.new do |app_server, selenium_server|
-        app_server.host = APP_SERVER_HOST
-        app_server.port = APP_SERVER_PORT + port_counter
-        app_server.config_ru_path = File.expand_path(File.join(
+      CapybaraSelenium.configure do |config|
+        config.app_server.host = APP_SERVER_HOST
+        config.app_server.port = APP_SERVER_PORT + port_counter
+        config.app_server.config_ru_path = File.expand_path(File.join(
           __FILE__, "../web_app/config_#{opts[:strategy] || :whitelist}.ru"))
 
-        selenium_server.server_url = SELENIUM_SERVER_URL
-        selenium_server.capabilities = {
+        config.selenium_server.server_url = SELENIUM_SERVER_URL
+        config.selenium_server.capabilities = {
           'browser_name' => opts[:browser_name] || :firefox,
           'version' => opts[:version] || 'ANY',
           'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER'],
           'build' => ENV['TRAVIS_BUILD_NUMBER']
         }
-      end.configure
+      end
     end
 
     def port_counter
