@@ -1,9 +1,13 @@
-@javascript
-Given /^I choose a (.*) browser$/ do |browser_name|
-  ci_configure(browser_name)
+Given(/^a (\w+) for no caching my web application$/) do |strategy|
+  @strategy = strategy
 end
 
-Given /^I visit the (.*) page$/ do |page_name|
+Given(/^I open a '(.+)' (\w+)$/) do |browser_name, browser_version|
+  TestSettings.configure(browser_name: browser_name, version: browser_version,
+                         strategy: @strategy)
+end
+
+Given(/^I visit the (\w+) page$/) do |page_name|
   url = case page_name
         when 'home' then '/'
         else
@@ -12,7 +16,7 @@ Given /^I visit the (.*) page$/ do |page_name|
   visit url
 end
 
-Given /^I store (\d) todo tasks in session$/ do |number|
+Given(/^I store (\d) todo tasks in session$/) do |number|
   div_xpath = "//div[@class='input-append']"
   input_el = browser.find_element xpath: "#{div_xpath}/input"
   add_btn_el = browser.find_element xpath: "//div[@class='input-append']/button"
@@ -24,14 +28,13 @@ Given /^I store (\d) todo tasks in session$/ do |number|
   end
 end
 
-When /^I click on (.*)$/ do |text|
+When(/^I click on (.*)$/) do |text|
   browser.find_element(link_text: text).click
 end
 
-When /^I press the (next|back) browser button$/ do |direction|
+When(/^I press the (next|back) browser button$/) do |direction|
   browser.navigate.send(direction)
 end
 
-Then /^I see the (\d) todo tasks in todo list$/ do |number|
-
+Then(/^I see the (\d) todo tasks in todo list$/) do |_|
 end
