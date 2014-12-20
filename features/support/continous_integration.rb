@@ -21,7 +21,7 @@ module ContinousIntegration
       selenium_server.capabilities = {
         :'browser_name' => browser_name,
         :'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER'],
-        :'build' => os.environ['TRAVIS_BUILD_NUMBER']
+        :'build' => ENV['TRAVIS_BUILD_NUMBER']
       }
     end.configure
   end
