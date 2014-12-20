@@ -5,6 +5,7 @@ before_install:
 - gem update --system
 - gem --version
 script:
+- export TRAVIS=true
 - bundle exec rake
 addons:
   code_climate:
