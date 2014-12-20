@@ -1,0 +1,11 @@
+language: ruby
+rvm:
+- 2.1.2
+before_install:
+- gem update --system
+- gem --version
+script:
+- bundle exec rake
+addons:
+  code_climate:
+    repo_token: f6d5a24aa8a0c85d8bc0f2d622f0056918b56c764fb812b711d68469bdb8356a

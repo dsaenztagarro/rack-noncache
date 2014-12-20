@@ -1,10 +1,7 @@
 require 'bundler/gem_tasks'
-
 require 'cucumber'
 require 'cucumber/rake/task'
 require 'rubocop/rake_task'
-
-require 'pry'
 
 Dir.glob('lib/tasks/*.rake').each { |path| load path }
 

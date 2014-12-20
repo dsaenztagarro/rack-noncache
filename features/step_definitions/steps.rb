@@ -1,6 +1,6 @@
 @javascript
-Given /^I choose a (.*) browser$/ do |browser|
-  driver_for(browser)
+Given /^I choose a (.*) browser$/ do |browser_name|
+  ci_configure(browser_name)
 end
 
 Given /^I visit the (.*) page$/ do |page_name|
