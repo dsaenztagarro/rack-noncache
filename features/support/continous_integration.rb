@@ -27,7 +27,7 @@ module TestSettings
         config.selenium_server.server_url = SELENIUM_SERVER_URL
         config.selenium_server.capabilities = {
           'browser' => opts[:browser_name] || :firefox,
-          'browser_name' => opts[:browser_name] || :firefox,
+          'browserName' => opts[:browser_name] || :firefox,
           'version' => opts[:version] || 'ANY',
           'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER'],
           'build' => ENV['TRAVIS_BUILD_NUMBER']
