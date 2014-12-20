@@ -7,6 +7,9 @@ before_install:
 script:
 - export TRAVIS=true
 - bundle exec rake
+after_success:
+  coveralls
 addons:
+  sauce_connect: true
   code_climate:
     repo_token: f6d5a24aa8a0c85d8bc0f2d622f0056918b56c764fb812b711d68469bdb8356a

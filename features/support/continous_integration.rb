@@ -18,7 +18,10 @@ module ContinousIntegration
         File.join(__FILE__, '../web_app/config.ru'))
 
       selenium_server.server_url = SELENIUM_SERVER_URL
-      selenium_server.capabilities = { browser_name: browser_name }
+      selenium_server.capabilities = {
+        'browser_name' => browser_name,
+        'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
+      }
     end.configure
   end
 
