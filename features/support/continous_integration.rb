@@ -20,7 +20,7 @@ module TestSettings
     def configure(opts = {})
       CapybaraSelenium.configure do |config|
         config.app_server.host = APP_SERVER_HOST
-        config.app_server.port = APP_SERVER_PORT + port_counter
+        config.app_server.port = APP_SERVER_PORT.to_i + port_counter
         config.app_server.config_ru_path = File.expand_path(File.join(
           __FILE__, "../web_app/config_#{opts[:strategy] || :whitelist}.ru"))
 
