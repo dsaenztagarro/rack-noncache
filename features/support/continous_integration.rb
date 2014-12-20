@@ -5,7 +5,7 @@ Dir[File.join(__FILE__, '../../lib/**/*.rb')].each { |f| require f }
 
 # Helpers for continous integration
 module ContinousIntegration
-  APP_SERVER_HOST = ENV['CI_APP_SERVER_HOST'] || 'localhost'
+  APP_SERVER_HOST = ENV['CI_APP_SERVER_HOST'] || '127.0.0.1'
   APP_SERVER_PORT = ENV['CI_APP_SERVER_PORT'] || 8080
   SELENIUM_SERVER_URL = ENV['CI_SELENIUM_SERVER_URL'] ||
                         'http://127.0.0.1:4444/wd/hub'
@@ -20,7 +20,8 @@ module ContinousIntegration
       selenium_server.server_url = SELENIUM_SERVER_URL
       selenium_server.capabilities = {
         :'browser_name' => browser_name,
-        :'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER']
+        :'tunnel-identifier' => ENV['TRAVIS_JOB_NUMBER'],
+        :'build' => os.environ['TRAVIS_BUILD_NUMBER']
       }
     end.configure
   end
