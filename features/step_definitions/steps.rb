@@ -10,7 +10,7 @@ end
 
 Given(/^I visit the (\w+) page$/) do |page_name|
   url = case page_name
-        when 'home' then '/'
+        when 'home' then '/index'
         else
           '/details'
         end
@@ -37,5 +37,6 @@ When(/^I press the (next|back) browser button$/) do |direction|
   browser.navigate.send(direction)
 end
 
-Then(/^I see the (\d) todo tasks in todo list$/) do |_|
+Then(/^I see the (\d) todo tasks in todo list$/) do |number|
+  expect(browser.find_elements(xpath: '//ul/li').size).to eql(number.to_i)
 end

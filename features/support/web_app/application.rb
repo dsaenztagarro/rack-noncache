@@ -14,7 +14,7 @@ class Todo
   property :id,         Serial
   property :text,       Text
   # property :created_at, DateTime, :default => lambda { |r,p| Time.now }
-  property :done,       Boolean, :default => false
+  property :done,       Boolean, default: false
 end
 
 DataMapper.finalize
@@ -33,7 +33,7 @@ class DummyApp < Sinatra::Base
     content_type 'application/json'
   end
 
-  get '/' do
+  get '/index' do
     @todos = Todo.all
     erb :index
   end
