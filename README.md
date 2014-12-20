@@ -8,17 +8,6 @@
 
 Rack::NonCache is a rack middleware that disables HTTP browser caching.
 
-## Support
-
-This middleware has been tested in these browsers:
-
-- Firefox
-- Chrome
-- Internet Explorer
-- Safari
-- Opera
-
-If you need special support por any other browser, feel free to contact me!
 
 ## Installation
 
