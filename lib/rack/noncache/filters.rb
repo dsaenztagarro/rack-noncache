@@ -12,7 +12,7 @@ module Rack
       def self.apply(headers)
         headers['Cache-Control'] += 'no-cache, max-age=0, must-revalidate, ' \
                                    'no-store, private'
-        headers['HTTP_PRAGMA'] = 'no-cache'
+        headers['Pragma'] = 'no-cache, private'
       end
     end
 
