@@ -14,7 +14,7 @@ Feature: Disable cache in browser navigation
       | Browser           | Version | Strategy  | Platform   |
       | firefox           | 34      | whitelist | Linux      |
       | firefox           | 34      | blacklist | Linux      |
-#       | chrome            | 38      | whitelist | Linux      |
+      | chrome            | 38      | whitelist | Linux      |
 #       | opera             | 12      | whitelist | Linux      |
 #       | safari            | 8       | whitelist | OS X 10.10 |
 #       | internet explorer | 11      | whitelist | Windows 7  |

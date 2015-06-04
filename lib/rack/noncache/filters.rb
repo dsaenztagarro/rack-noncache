@@ -18,7 +18,7 @@ module Rack
 
     class ProxyFilter
       def self.apply(headers)
-        headers['HTTP_EXPIRES'] = Time.now.httpdate
+        headers['HTTP_EXPIRES'] = 'Fri, 30 Oct 1998 14:19:41 GMT'
       end
     end
 
